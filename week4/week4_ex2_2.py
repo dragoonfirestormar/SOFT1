@@ -1,3 +1,6 @@
+'''
+design a function draw_polygon to draw a regular polygon. Using this function, you should be able to draw triangles, squares, pentagon, exagon and so on.
+'''
 import turtle
 import math
 my_turtle = turtle.Turtle()

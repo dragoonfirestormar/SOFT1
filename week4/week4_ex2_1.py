@@ -1,3 +1,6 @@
+'''
+design a function draw_triangle to draw a triangle. Using this function and a for loop, draw the following image:
+'''
 import turtle
 import math
 my_turtle = turtle.Turtle()

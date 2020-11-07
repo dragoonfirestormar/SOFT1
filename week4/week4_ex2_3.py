@@ -1,3 +1,6 @@
+'''
+design a function draw_star to draw a star with six branches. Using this function and a for loop, draw the following image:
+'''
 import turtle
 import math
 my_turtle = turtle.Turtle()

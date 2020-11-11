@@ -57,7 +57,7 @@ L = 4
 Edge = 4
 i=0
 
-s.tracer(0, 0)
+#s.tracer(0, 0)
 for y in maze:
     for x in y:
         if x==' ':
@@ -100,7 +100,7 @@ def f():
             yind-=1
             sq(xind*Edge, yind*Edge, L, 'red')
     print('Up')
-    s.update()
+    
 
 def d():
     global xind
@@ -108,18 +108,14 @@ def d():
     if yind == len(maze):
         return None
     else:
-        try:
-            if maze[yind+1][xind+0] == 'X':
-                print('X')
-                return None
-            else:
-                sq(xind*Edge, yind*Edge, L, 'black')
-                xind+=0
-                yind+=1
-                sq(xind*Edge, yind*Edge, L, 'red')
-        except:
-            print('You Won!')
-            exit()
+        if maze[yind+1][xind+0] == 'X':
+            print('X')
+            return None
+        else:
+            sq(xind*Edge, yind*Edge, L, 'black')
+            xind+=0
+            yind+=1
+            sq(xind*Edge, yind*Edge, L, 'red')
     print('Down')
 
 def l():
@@ -168,6 +164,90 @@ while(False):
         r()
     else:
         exit()
+
+def multicheck(x,y):
+    top=True
+    bottom=True
+    left=True
+    right=True
+    if y == len(maze):
+        bottom=False
+        pass
+    if y == 0:
+        top=False
+        pass
+    if x == len(maze[0]):
+        right=False
+        pass
+    if x == 0:
+        left=False
+        pass
+    if(top):
+        if maze[y-1][x] == 'X':
+            top=False
+    if(bottom):
+        if maze[y+1][x] == 'X':
+            bottom=False
+    if(left):
+        if maze[y][x-1] == 'X':
+            left=False
+    if(right):
+        if maze[y][x+1] == 'X':
+            right=False
+    return [top, bottom, left, right]
+
+def firstStep():
+    if xind == 0:
+        return 'r'
+    if xind == len(maze[0]):
+        return 'l'
+    if y==0:
+        return 'd'
+    else:
+        return 'f'
+    
+
+
+lastStep = firstStep()
+for x in range(100):
+    try:
+        if lastStep == 'f':
+            if maze[yind][xind-1] != 'X':
+                lastStep= 'l'
+                l()
+            elif maze[yind-1][xind] == 'X':
+                lastStep= 'r'
+            else:
+                f()
+        if lastStep == 'r':
+            if maze[yind-1][xind] != 'X':
+                lastStep= 'f'
+                f()
+            elif maze[yind][xind+1] == 'X':
+                lastStep = 'd'
+            else:
+                r()
+        if lastStep == 'd':
+            if maze[yind][xind+1] != 'X':
+                lastStep= 'r'
+                r()
+            elif maze[yind+1][xind] == 'X':
+                lastStep= 'l'
+            else:
+                d()
+        if lastStep == 'l':
+            if maze[yind+1][xind] != 'X':
+                lastStep= 'd'
+                d()
+            elif maze[yind][xind-1] == 'X':
+                lastStep= 'f'
+            else:
+                l()
+    except:
+        print('You Won')
+        break
+    s.update()
+    pass
 
 s.onkey(f, "Up")
 s.onkey(d, "Down")

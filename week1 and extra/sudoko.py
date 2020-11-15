@@ -24,6 +24,7 @@ def sq(x,y,l,c):
     
     t.write("       2", align="center",font=("Arial", 10, "normal"))
     t.fd(l)
+    #sorry i just wanted to maintain my daily comit
     t.rt(360-90)
     t.fd(l)
    

@@ -21,4 +21,4 @@ def pairwise_digits(number_a, number_b):
     tempstr+=(smallNbig[1]-smallNbig[0])*'0'
     return tempstr
 
-print(pairwise_digits(1213,10435))
+print(pairwise_digits(int(input('Enter First Number: ')),int(input('Enter Second Number: '))))

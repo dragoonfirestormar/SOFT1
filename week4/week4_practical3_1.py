@@ -10,4 +10,4 @@ def sum_digits(n):
         return n
     return int(str(n)[0]) + sum_digits(int(str(n)[1::]))
 
-print(sum_digits(1234))
+print(sum_digits(abs(int(input('Enter Your Number: ')))))

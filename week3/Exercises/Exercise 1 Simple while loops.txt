@@ -1,0 +1,7 @@
+Exercise 1: Simple while loopsExercise 1: Simple while loops
+
+1. Write a program to keep asking for a number until you enter a negative number. At the end, print the sum of all entered numbers.
+
+2. Write a program to keep asking for a number until you enter a negative number. At the end, print the average of all entered numbers.
+
+3. Write a program to keep asking for a number until you enter a negative number. At the end, print the number of even number entered.

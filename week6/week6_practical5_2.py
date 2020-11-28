@@ -18,15 +18,17 @@ import string
 def get_words_frequencies(text):
     freq = {}
     temp = ''
-    for x in text.lower()+' ':
+    for x in text.lower().strip()+' ':
         if not (x in string.punctuation or  x==' '):
             temp+=x
         else:
-            if temp in freq:
+            if temp == '':
+                pass
+            elif temp in freq:
                 freq[temp]+=1
             else:
                 freq[temp]=1
             temp=''
-    return freq
+    return freq 
 
-print(get_words_frequencies("As Python's creator, I'd like to say a few words about its origins."))
+print(get_words_frequencies(". to Be, or Not TO be! "))

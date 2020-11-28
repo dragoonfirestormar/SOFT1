@@ -32,7 +32,9 @@ def factorial(n):
         return -1
     else:
         return n* factorial(n-1)
-    
-print(sum_all(10))
-print(mul_table(3))
-print(factorial(10))
+
+n = int(input('Enter Your Number:'))
+
+print(sum_all(n))
+print(mul_table(n))
+print(factorial(n))

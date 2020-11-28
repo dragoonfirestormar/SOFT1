@@ -30,4 +30,4 @@ def to_base10(binary):
         index+=1
     return decimal
 
-print(to_base10(11111111))
+print(to_base10(int(input('Enter Your Number: '))))

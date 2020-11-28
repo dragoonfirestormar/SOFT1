@@ -33,6 +33,6 @@ def get_words_starting_with(text, letter):
             counter=''
         else:
             counter+=x
-    return print(result, NoRepeatedResult)
+    return (result, NoRepeatedResult)
 
-get_words_starting_with(' i mean i can type a very long shit which starts with a but i have no idea watf ill do i wanna die so bad lol xd a aaaa ah lol no more fun','i')
+print(get_words_starting_with(input('Enter Your Sentence: '),input('Enter the alphabet: ')))

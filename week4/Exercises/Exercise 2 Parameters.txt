@@ -1,0 +1,10 @@
+Exercise 2: ParametersExercise 2: Parameters
+Attached Files:
+File turtlefunctionstemplate.py Click for more options (463 B)
+Download the file turtlefunctionstemplate.py (attached) and open it in VS Code.
+
+1. design a function draw_triangle to draw a triangle. Using this function and a for loop, draw the following image:
+ concentric triangle
+2. design a function draw_polygon to draw a regular polygon. Using this function, you should be able to draw triangles, squares, pentagon, exagon and so on.
+3. design a function draw_star to draw a star with six branches. Using this function and a for loop, draw the following image:
+ concentric start

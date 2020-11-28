@@ -52,10 +52,10 @@ def vector_addition(vector1, vector2):
     if(len(vector2)!=len(vector1)):
         return 'Error'
     for x in range(len(vector1)):
-        vector1[x]+=vector2[x]
+        vector1[x]=int(vector1[x])+int(vector2[x])
     return vector1
 
 
-print(scalar_product(2,[1,2,3]))
+print(scalar_product(int(input('Enter Scalar Value: ')),input('Enter a Matrix seperated by coma: ').split(',') ))
 
-print(vector_addition([1,1,1],[2,2,2]))
+print(vector_addition( input('Enter first Matrix to add: ').split(',') , input('Enter second Matrix to add: ').split(',') ))

@@ -50,6 +50,11 @@ def caesar_decrypt(text):
             dencription += x
     return dencription
 
-print(caesar_decrypt("""bpm owwl vmea ijwcb kwuxcbmza qa bpib bpmg lw epib gwc
+string = """bpm owwl vmea ijwcb kwuxcbmza qa bpib bpmg lw epib gwc
 bmtt bpmu bw lw. bpm jil vmea qa bpib bpmg lw epib gwc
-bmtt bpmu bw lw."""))
+bmtt bpmu bw lw."""
+
+for _ in range(32-12):
+    string = caesar_decrypt(string)
+
+print(string)

@@ -22,9 +22,9 @@ def concatDico(dico1, dico2):
     for k,v in dico2.items():
         ayy[k]=v
 
-    print (ayy)
+    return (ayy)
 
-concatDico({'“one”':1, '“two”':2, '“three”':3}, {'“four”':4, '“five”':5})
+print('For Starters ',concatDico({'“one”':1, '“two”':2, '“three”':3}, {'“four”':4, '“five”':5}))
 
 
 def concatDico2(dico1, dico2):
@@ -38,6 +38,6 @@ def concatDico2(dico1, dico2):
     for k,v in dico2.items():
         ayy[k]=v
 
-    print (ayy)
+    return (ayy)
 
-concatDico2({'“one”':1, '“two”':2, '“five”':5},{'“two”': '”10”', '“five”':'”101”'})
+print('For Advance Bit ',concatDico2({'“one”':1, '“two”':2, '“five”':5},{'“two”': '”10”', '“five”':'”101”'}))

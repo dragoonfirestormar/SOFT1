@@ -8,6 +8,7 @@ my_turtle.showturtle()
 
 ####################      WRITE YOUR CODE BELOW      #########################
 
+my_turtle.speed(0)
 
 def triangle(x):
     my_turtle.pendown()
@@ -66,7 +67,6 @@ def hexagan(x):
 #hexagan(100)
 
 
-
 def polygon(n,x):
     angle = (n-2)*180/n
     print(angle)
@@ -75,7 +75,7 @@ def polygon(n,x):
         my_turtle.forward(x)
         my_turtle.left(180-angle)
 
-polygon(3,100)
+polygon(int(input('Enter Number of Side of the Polygon: ')),100)
     
 #################### WRITE YOUR CODE ABOVE THIS LINE #########################
 ####################        IGNORE CODE BELOW        #########################

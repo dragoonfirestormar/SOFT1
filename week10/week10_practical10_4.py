@@ -7,9 +7,10 @@ class Polynomial:
         power=0
         output=''
         for x in range(len(self._coef)):
-            output+=str(self._coef[-x-1])+'x^'+str(power)+' '
+            if not abs(self._coef[-x-1]) == 0:
+                output+=('+ ' if self._coef[-x-1]>0 else '- ' )+str(abs(self._coef[-x-1]))+'x^{'+str(power)+'} '
             power+=1
-        return output
+        return output[2:]
 
     def eval(self, x):
         calculation = 0.0
@@ -36,16 +37,37 @@ class Polynomial:
 
     def __mul__(self, x):
         mularr = []
-        temp = []
-        print(x)
-        for x in range(len(self._coef)):
-            for y in range(len(x._coef)):
-                #-x-1 -y-1
-                temp.append(self._coef[x]*x[y])
+        a = len(self._coef)
+        b = len(x._coef)
+        A = self._coef
+        B = x._coef
+        aP = a-1
+        bP = b-1
+        temp = [0]*(aP+bP+1)
+        for x in range(a):
+            for y in range(b):
+                temp[-aP-bP-1]=(A[x]*B[y])
+                bP-=1
+            aP = aP-1
+            bP = b-1
             mularr.append(temp)
-            temp=[]
-        print(mularr)
+            temp=[0]* (aP+bP+1)
+        X = [0]
+        for x in mularr:
+            if len(X)>=len(x):
+                Barr = X
+                Sarr = x
+            else:
+                Barr = x
+                Sarr = X
+            for y in range(len(Sarr)):
+                Barr[-1-y]+=Sarr[-1-y]
+            X = Barr
+        return (X)
 
-f= Polynomial([-5, 0, 2, 0, 1])
-z= Polynomial([5, 0, 2, 0])
-print(f*z)
+    def to_latex(self):
+        return self
+
+f= Polynomial([3,0,2])
+z= Polynomial([4,0,-7,1])
+print(z.to_latex())

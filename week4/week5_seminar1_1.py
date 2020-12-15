@@ -19,16 +19,30 @@ the correct one (computationally expensive), one cleverer that is far more effic
 toFind = [-1, 1, 2, 4, 8]
 target = 7
 
+#brute force
 output = set()
-
 for x in range(len(toFind)):
     for y in range(len(toFind)):
-        if toFind[x]+toFind[y] < target:
-            pass
-        elif toFind[x]+toFind[y] > target:
-            break
-        else:
+        if toFind[x]+toFind[y] == target:
             if output.issubset((toFind[x],toFind[y])):
                 output.add((toFind[x],toFind[y]))
+print(output)
+'''
+#better way to do so
+output = []
+for x in range(0, len(toFind)):
+    ind = int(len(toFind)/2)
+    y=x
+    while x<ind and y<len(toFind):
+        if toFind[y] + toFind[ind] > target:
+            ind = ind - int(ind/2)
+        elif toFind[y] + toFind[ind] < target:
+            ind = ind + int(ind/2)
+        else:
+            if not( (toFind[y],toFind[y]) in output or (toFind[y],toFind[y]) in output ):
+                output.append((toFind[y],toFind[ind]))
+                break
+        y+=1
 
 print(output)
+'''

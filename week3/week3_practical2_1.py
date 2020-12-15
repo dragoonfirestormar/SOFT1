@@ -21,7 +21,6 @@ for x in range(int(len(word))):
     if word[x]!=word[-x-1]:
         counter=False
         break
-    pass
 
 if(counter):
     print("YES!")
@@ -57,7 +56,6 @@ while(x<=int(len(word)/2)):
         break
     x+=1
     y+=1
-    pass
 
 if(counter):
     print("YES!")

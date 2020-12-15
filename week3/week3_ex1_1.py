@@ -16,7 +16,6 @@ def printEXIT(a,b,c):
     print("Average of all the number entered:",b)
     print("Number of even number entered:",c)
     exit()
-    pass
 
 while True:
     x=input("Enter A Number: ")
@@ -24,4 +23,3 @@ while True:
     print("You have entered:", x if float(x)>=0 else printEXIT(Sum,Sum/total,evens))
     Sum+=float(x)
     evens+=1 if float(x)%2==0 else 0
-    pass

@@ -18,7 +18,7 @@ mod 26, and so on.
 1. Write a script that encrypts a plain text into a cypher text using the Caesar Cipher
 algorithm.
 2. Write a script that decrypts a cipher text into a plain text using the Caesar Cipher
-algorithm. 
+algorithm.
 '''
 word = str(input("Enter your sentence: ")).lower()
 
@@ -32,14 +32,14 @@ for x in word:
             encription += chr(ord('a') + ord(x) - (ord('z')-n) -1)
     else:
         encription += x
-    
+
 dencription=''
 for x in word:
     if x >= 'a' and x <= 'z':
         if x >= chr(ord('a')+n):
             dencription += chr(ord(x)-3)
         else:
-            dencription +=  chr(ord('z') - n +ord(x) +1 -ord('a')) 
+            dencription +=  chr(ord('z') - n +ord(x) +1 -ord('a'))
     else:
         dencription += x
 

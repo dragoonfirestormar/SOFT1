@@ -96,7 +96,7 @@ def yikes(inp):
             else:
                 showcase[sC][sR] = 'xo'
                 sC+=1
-        sR+=1
+        sR+ =1
     '''
     if inp[1]>=0 and inp[0]>=0 and inp[1]<9 and inp[0]<9:
         if Game[inp[1]][inp[0]] !=0:

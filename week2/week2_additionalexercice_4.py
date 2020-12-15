@@ -18,13 +18,9 @@ m=208-0.7*age
 
 if (rate<0.5*m):
     print('Couch potato')
-    pass
 elif (rate<0.7*m):
     print('Aerobic training')
-    pass
 elif (rate<0.9*m):
     print('Threshold training')
-    pass
-else: 
+else:
     print('Interval training')
-    pass

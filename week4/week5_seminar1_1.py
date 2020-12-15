@@ -16,9 +16,13 @@ Write an algorithm to find all such pairs given a list and a target. Note there 
 to the problem, one called brute force where we try all possible combination of pairs and keep
 the correct one (computationally expensive), one cleverer that is far more efficient.
 '''
-toFind = [-1, 1, 2, 4, 8]
-target = 7
-
+if(input('Enter anything if you want to insert custom input else hit enter: ')!=''):
+    toFind = list(map(int,input('Enter Numbers in List Seperated by Space: ').split()))
+    target = int(input('Enter Number to Find: '))
+else:
+    toFind = [2, 4, 5, 7]
+    target = 9
+'''
 #brute force
 output = set()
 for x in range(len(toFind)):
@@ -28,21 +32,25 @@ for x in range(len(toFind)):
                 output.add((toFind[x],toFind[y]))
 print(output)
 '''
+
 #better way to do so
 output = []
-for x in range(0, len(toFind)):
-    ind = int(len(toFind)/2)
-    y=x
-    while x<ind and y<len(toFind):
-        if toFind[y] + toFind[ind] > target:
-            ind = ind - int(ind/2)
-        elif toFind[y] + toFind[ind] < target:
-            ind = ind + int(ind/2)
+for x in range(0, int(len(toFind)/2)):
+    if toFind[x]>=target:
+        break
+    #print('x :',x,toFind[x])
+    T = (x,len(toFind))
+    while T[1]-T[0]>1:
+        ind = int((T[0]+T[1])/2)
+        #print('T: ',T)
+        #print('ind: ',ind)
+        #print()
+        if toFind[x] + toFind[ind] > target:
+            T = (T[0], ind)
+        elif toFind[x] + toFind[ind] < target:
+            T = (ind, T[1])
         else:
-            if not( (toFind[y],toFind[y]) in output or (toFind[y],toFind[y]) in output ):
-                output.append((toFind[y],toFind[ind]))
-                break
-        y+=1
+            output.append((toFind[x],toFind[ind]))
+            break
 
 print(output)
-'''

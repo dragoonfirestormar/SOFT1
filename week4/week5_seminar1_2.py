@@ -9,9 +9,8 @@ For example:
 '''
 def merge(listA, listB):
     AnB = []
-    #l = len(listA) if len(listA)<=len(listB) else len(listB)
     while listA!=[] and listB!=[]:
-        if int(listA[0])<=int(listB[0]):
+        if listA[0]<=listB[0]:
             AnB.append(listA[0])
             listA.pop(0)
         else:
@@ -23,4 +22,4 @@ def merge(listA, listB):
         AnB+=listA
     return AnB
 
-print(merge(input('Enter an Array seperated by comma: ').split(','),input('Enter an Array seperated by comma: ').split(',')))
+print(merge(list(map(int,input('Enter an Array seperated by space: ').split())),list(map(int,input('Enter an Array seperated by space: ').split()))))

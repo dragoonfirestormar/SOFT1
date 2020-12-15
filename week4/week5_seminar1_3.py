@@ -10,7 +10,7 @@ themselves are discarded. An example is given below:
 'say', 'a', 'few', 'words', 'about', 'its', 'origins']
 You can assume that a string has a method contains(Character) that returns true if the
 character is in the string, false otherwise. This exercise is more challenging than it may look
-like. 
+like.
 '''
 def split_text(text, seperator):
     temptext = ''
@@ -26,4 +26,4 @@ def split_text(text, seperator):
             temptext+=x
     return array
 
-print(split_text("  As Python's creator, I'd like to say  ", ','))
+print(split_text("As Python's creator, I'd like to say a few words about its origins.", ", .'"))

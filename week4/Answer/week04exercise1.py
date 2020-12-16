@@ -1,6 +1,6 @@
 # For the three exerices, you should refactor the code you wrote in week 3
 
-# 1- Write a function sum_all(n) that returns the sum of the first n positive 
+# 1- Write a function sum_all(n) that returns the sum of the first n positive
 # natural numbert. The function should return -1 if n<0.
 
 def sum_all(n):
@@ -36,7 +36,7 @@ def mul_table(number):
     number_length = len(str(number)) # value used to have a nice table formating
     table = ''
     for i in range(1, 11):
-        table += '{0:>2d} x {1} = '.format(i, number) 
+        table += '{0:>2d} x {1} = '.format(i, number)
         # create formatting for the right hand side of the -= in table
         formatting =('{0:>' + str(number_length + 1) + 'd}\n')
         table += formatting.format(number * i)

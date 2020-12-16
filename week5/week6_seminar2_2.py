@@ -19,30 +19,94 @@ of all the possible rectangle, and to understand better how to cover all possibl
 complete the bottom row of the image.
 Once you have understood the principle, write the algorithm to find the maximal rectangle sum
 '''
-def lar(mat):
-    temp=0
-    bigtemp=0
-    max=0
-    for row in range(len(mat)):
-        for colm in range(len(mat[0])):
-            for r in range(row,len(mat)):
-                for c in range(colm,len(mat[0])):
-                    for sums in range(r):
-                        print(mat[sums][c])
-                        temp+=mat[sums][c]
-                    #print(temp)
-                    bigtemp+=temp
-                    if(bigtemp>max):
-                        max=bigtemp
-                    temp=0
-                bigtemp=0
-    return max
 
-'''
-print( lar([[6,-5,-7,4,-4],
+# sum of submatrix
+def sumMatrix(mat, topRow, topCol, botRow, botCol):
+    Sum = 0
+    for i in range(topRow, botRow+1):
+        for j in range(topCol, botCol+1):
+            Sum += mat[i][j]
+    return Sum
+#brute force with n^4 complexity
+def brute(mat):
+    R, C = len(mat), len(mat[0])
+    Max = mat[0][0]
+
+    for topRow in range(0,R):
+        for topCol in range(0,C):
+            for botRow in range(R-1, topRow, -1):
+                for botCol in range(C-1, topCol, -1):
+                    Max = max(Max,sumMatrix(mat, topRow, topCol, botRow, botCol))
+
+    return Max
+
+
+# Proper Kadane's Algorithm, returns the max sum
+def num(lis):
+    Max = Lmax = lis[0]
+    for x in range(1,len(lis)):
+        Lmax = lis[x] if lis[x]>Lmax+lis[x] else lis[x]+Lmax
+        if Lmax > Max: Max = Lmax
+    return Max
+# only gets the max sum using Kadane's Algorithm as space complexity
+def lar(mat):
+    R, C = len(mat), len(mat[0])
+    Max = mat[0][0]
+    for r in range(R):
+        Arr = [0]*R
+        for c in range(r,C):
+            Arr = [ mat[x][c]+Arr[x] for x in range(R) ]
+            Lmax = num(Arr)
+            if Lmax > Max:
+                Max = Lmax
+    return Max
+
+# Proper Kadane's Algorithm, returns the max sum and the index of last and first element included
+def index(lis):
+    Max = Lmax = lis[0]
+    L = M = (0,1)
+    for x in range(1,len(lis)):
+        if lis[x]>Lmax+lis[x]:
+            Lmax=lis[x]
+            L=(x,x+1)
+        else:
+            Lmax=lis[x]+Lmax
+            L=(L[0],L[1]+1)
+        if Lmax > Max:
+            Max = Lmax
+            M=L
+    return (Max,M)
+# returns the max sum and the extreme left, right, top, bottom index of sub matrix with the matrix itself
+def larWithIndex(mat):
+    R, C = len(mat), len(mat[0])
+    Max = mat[0][0]
+    for r in range(R):
+        Arr = [0]*R
+        for c in range(r,C):
+            Arr = [ mat[x][c]+Arr[x] for x in range(R) ]
+            Re = index(Arr)
+            Lmax = Re[0]
+            if Lmax > Max:
+                Max = Lmax
+                Mleft = r
+                Mright = c
+                Mup = Re[1][0]
+                Mdown = Re[1][1]
+    return (Max, Mleft, Mright, Mup, Mdown, mat)
+# better viwer and showcase the results as the sub matrix as the indexes provided by the the larWithIndex
+def printAr(cor):
+    yikes=[]
+    for r in range(cor[3],cor[4]):
+        temp=[]
+        for c in range(cor[1],cor[2]+1):
+            temp.append(cor[5][r][c])
+        yikes.append(temp)
+    return (cor[0],yikes)
+
+print((brute([[1,2],
+           [3,-4]])))
+
+print( printAr(larWithIndex([[6,-5,-7,4,-4],
            [-9,3,-6,5,2],
            [-10,4,7,-6,3],
-           [-8,9,-3,3,-7]] ))
-'''
-
-print(lar([[1,2],[3,-4]]))
+           [-8,9,-3,3,-7]] )))

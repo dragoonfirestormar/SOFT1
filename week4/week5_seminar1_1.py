@@ -24,6 +24,8 @@ else:
     target = 9
 '''
 #brute force
+#loop through every index and start finding pairs
+# n^2
 output = set()
 for x in range(len(toFind)):
     for y in range(len(toFind)):
@@ -32,8 +34,10 @@ for x in range(len(toFind)):
                 output.add((toFind[x],toFind[y]))
 print(output)
 '''
-
+'''
 #better way to do so
+#divide and rule method. still defo not faster than the fastest method (like binary search)
+# log n
 output = []
 for x in range(0, int(len(toFind)/2)):
     if toFind[x]>=target:
@@ -52,5 +56,23 @@ for x in range(0, int(len(toFind)/2)):
         else:
             output.append((toFind[x],toFind[ind]))
             break
+
+print(output)
+'''
+#best method for the conditions provided
+#straight forward aproch
+# n
+output=[]
+start = 0
+end = len(toFind)-1
+while start<end:
+    if toFind[start]+toFind[end] == target:
+        output.append((toFind[start],toFind[end]))
+        start+=1
+        end-=1
+    elif toFind[start]+toFind[end] < target:
+        start+=1
+    else:
+        end-=1
 
 print(output)

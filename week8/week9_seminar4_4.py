@@ -34,6 +34,8 @@ You have seen during the lecture that we can improve the recursive implementatio
 Fibonacci function using memoization. We can also use this technique for this problem. Write
 the algorithm using memoization. What should we “remember” between each recursive call?
 '''
+
+# thats my solution which i got using the algorithm i developed for seminar question 2
 def road(prices,length,counter=None):
     if length <= 1:
         return length

@@ -31,17 +31,21 @@ Write the pseudo-code to implement this approach.
 
 '''
     # ABCDE
-B = [[0,1,1,1,0],
+B = [[0,1,1,1,1],
      [0,0,1,0,1],
-     [0,0,0,0,0],
-     [0,0,1,0,0],
-     [0,1,1,0,0]]
+     [0,0,0,0,1],
+     [0,0,1,0,1],
+     [0,0,0,0,0]]
 
 ElementsName = ['A','B','C','D','E']
 
+
+###############################################################
+
+
 #Brute Force
 influencer=[]
-# row should have 0's        
+# row should have 0's
 def rowCheck(List):
     factor = True
     for row in range(len(List)):
@@ -54,7 +58,7 @@ def rowCheck(List):
         factor = True
     return influencer
 
-# column should have 1's    
+# column should have 1's
 def columnCheck(List, ColumnID):
     for row in range(len(List)):
         if row == ColumnID:
@@ -67,47 +71,58 @@ def columnCheck(List, ColumnID):
     influencer.append(ElementsName[ColumnID])
 
 
-#print(rowCheck(B))
+print(rowCheck(B))
+
+
+#################################################################
+
 
 #God Like Move
-influencer=[]
-#One Extra Loop for More Efficiency 
+# maybe O(n) who knows
 def godsPlan(List):
     l = len(List)
-    for diagnol in range(l):
-        if List[diagnol][diagnol] == 0:
-            NewtonPlan(List,diagnol,l)
-            pass
-    return influencer
+    comparative = [0]*l
+    for arrI in range(l):
+        if List[arrI] == comparative:
+            result = [x for x in range(l) if List[arrI][x]==0]
+            if len(result)>1:
+                return ElementsName[arrI]
+    return -1
 
-#Cross Check with O(n) efficiency
-def NewtonPlan(List, Index, Len):
-    #factor = True
-    for x in range(Len):
-        if List[x][Index]==1 and List[Index][x]==0:
-            pass
-        else:
-            if x == Index:
-                pass
-            else:
-                return False
-    influencer.append(ElementsName[Index])
 
-#print(godsPlan(B))
-influencer=[]
-def xd(List):
-    Elm = []
-    NotInf = {}
-    MayInf = {}
-    l = len(List)
-    for row in range(l):
-        for column in range(l):
-            if len(Elm) == len(ElementsName):
-                return influencer
-            if List[row][column] == 1:
-                NotInf.add(1)
-                if ElementsName[row] in MayInf:
-                    MayInf.remove(ElementsName[row])
-                    pass
-            else:
-                pass
+print(godsPlan(B))
+
+# thing to notice: which was not clear before there can only be one influencer
+
+
+#################################################################
+
+
+#metho provided by seminar conuctor
+#no idea xd
+
+def influece(network):
+    v=0
+    noV = len(network)
+    while v < noV:
+        #print('\nV',v)
+        can = True
+        j=v+1
+        #print('J',j)
+        while j<noV:
+            #print('V + J',v,j)
+            if network[v][j]==1 or network[j][v]==0:
+                can = False
+                v=j
+                break
+            j+=1
+        #print('Result',can)
+        #print('J',j)
+        if can:
+            for j in range(0,noV-1):
+                if j!=v and ( network[v][j]==1 or network[j][v]==0):
+                    return -1
+            return ElementsName[v]
+    return -1
+
+print(influece(B))

@@ -1,4 +1,5 @@
 import random
+
 Column = []
 for x in range(ord('A'),ord('I')+1):
     Column.append(chr(x))
@@ -10,17 +11,17 @@ Rows = [None]*9
 Game = [[0 for i in range(len(Column))] for j in range(len(Rows))]
 
 
-print(Game)
+print(Game,'\n')
 
 mX = len(Game[0])
 mY = len(Game)
 
 print(mX)
-print(mY)
+print(mY,'\n')
 
 Bombs = []
 
-mB = 10
+mB = _mB = 1
 
 while mB>0:
     ran = (random.randint(0,mX-1),random.randint(0,mY-1))
@@ -44,9 +45,17 @@ for x in Bombs:
             Game[r+rI-1] = T
 
 def game(game):
-    temp = ''
+    temp = ' '*5
+    t=0
+    for x in range(0, len(game)):
+        temp+=str(x)+' '*2
+    temp+='\n\n'
     for x in game:
-        temp+=str(x)+'\n'
+        temp+=str(t)+' '*4
+        t+=1
+        for y in x:
+            temp+=str(y)+' '*2
+        temp+='\n'
     return temp
 
 print(game(Game))
@@ -60,56 +69,56 @@ showcase = [[0 for i in range(len(Column))] for j in range(len(Rows))]
 
 print(game(showcase))
 
+gg=0
+
+def check(arr, ind):
+    for x in arr:
+        count = x.count(0)
+        ind-=count
+    if ind==0: return True
+    else: False
+
+var = ' '
+
 def yikes(inp):
-    #inp = (0,0)
-    # inp[0]=_ inp[1]=|
-    sR = inp[0]
-    while sR>=0:
-        sC = inp[1]
-        while sC>=0:
-            if Game[sC][sR] !=0:
-                break
-            else:
-                showcase[sC][sR] = 'xo'
-                sC-=1
-        sC = inp[1]
-        while sC<mX:
-            if Game[sC][sR] !=0:
-                break
-            else:
-                showcase[sC][sR] = 'xo'
-                sC+=1
-        sR-=1
-    sR = inp[0]
-    while sR<mX:
-        sC = inp[1]
-        while sC>=0:
-            if Game[sC][sR] !=0:
-                break
-            else:
-                showcase[sC][sR] = 'xo'
-                sC-=1
-        sC = inp[1]
-        while sC<mX:
-            if Game[sC][sR] !=0:
-                break
-            else:
-                showcase[sC][sR] = 'xo'
-                sC+=1
-        sR+ =1
-    '''
-    if inp[1]>=0 and inp[0]>=0 and inp[1]<9 and inp[0]<9:
-        if Game[inp[1]][inp[0]] !=0:
-            print('oof')
-            return
+    #print(game(showcase))
+    global gg
+    gg+=1
+    print(gg)
+    if gg>100:
+        exit()
+    I = inp[0]
+    J = inp[1]
+    print(inp)
+    if I>=0 and J>=0 and I<mX and J<mY:
+        if str(Game[I][J]) == str(0):
+            showcase[I][J] = var
+            if J+1<mY:
+                if str(showcase[I][J+1]) != str(var):
+                    yikes((I,J+1))
+            if J-1>=0:
+                if str(showcase[I][J-1]) != str(var):
+                    yikes((I,J-1))
+            if I+1<mX:
+                if str(showcase[I+1][J]) != str(var):
+                    yikes((I+1,J))
+            if I-1>=0:
+                if str(showcase[I-1][J]) != str(var):
+                    yikes((I-1,J))
         else:
-            showcase[inp[1]][inp[0]]='XO'
-            yikes((sA-1,sB))
-            yikes((sA+1,sB))
-
-
+            temp = Game[I][J]
+            if temp != 'X':
+                showcase[I][J] = Game[I][J]
+            else:
+                exit("You Lost")
     else:
-        return
-    '''
-yikes((1,1))
-print(game(showcase))
+        return False
+
+while(True):
+    yikes((int(input("A: ")), int(input("B: "))))
+    if(check(showcase, _mB)):
+        exit('Won!')
+    print(game(Game))
+    print(game(showcase))
+
+

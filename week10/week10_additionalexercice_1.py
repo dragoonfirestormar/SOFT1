@@ -21,7 +21,7 @@ print(mY,'\n')
 
 Bombs = []
 
-mB = _mB = 1
+mB = _mB = 10
 
 while mB>0:
     ran = (random.randint(0,mX-1),random.randint(0,mY-1))
@@ -84,12 +84,12 @@ def yikes(inp):
     #print(game(showcase))
     global gg
     gg+=1
-    print(gg)
+    #print(gg)
     if gg>100:
         exit()
     I = inp[0]
     J = inp[1]
-    print(inp)
+    #print(inp)
     if I>=0 and J>=0 and I<mX and J<mY:
         if str(Game[I][J]) == str(0):
             showcase[I][J] = var
